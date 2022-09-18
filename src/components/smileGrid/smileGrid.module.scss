@@ -1,0 +1,19 @@
+.smileGrid {
+  width: 200px;
+  font-size: 0px;
+  :global{
+    br{
+      //display: none;
+    }
+  }
+}
+
+.item{
+  background-color: #ffffff;
+  outline:solid #c4c4ef 1px;
+  aspect-ratio: 1/1;
+  cursor:text;
+  width: 10%;
+  font-size: 10px;
+  display: inline-block;
+}

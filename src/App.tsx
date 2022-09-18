@@ -1,58 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, {useState} from 'react';
 import './App.css';
+import {appContext } from "./context/context";
+import {LayoutBlock} from "./components/layout/layout";
+import {sizeContext} from "./context/sizeContext";
+
+export const makeGrid = (x:number,y:number)=>new Array(x*y +1).fill( false)
 
 function App() {
+  const x =10;
+  const y = 30;
+  const size=20;
+  const defaultContext =  makeGrid(x,y)
+
+  const [points ,setPoints ] = useState(defaultContext);
+  const defaultValue = {points, setPoints};
+  const [xState , setX] = useState(x)
+  const [yState , setY] = useState(y)
+  const [sizeState , setSize] = useState(size)
+  const sizeValue ={
+    xState,
+    yState,
+    sizeState,
+    setX,
+    setY,
+    setSize
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <appContext.Provider value={defaultValue}>
+    <sizeContext.Provider value={sizeValue}>
+     <LayoutBlock defaultContext={defaultContext}/>
+    </sizeContext.Provider>
+    </appContext.Provider>
+
+
+        {/*<Counter />*/}
     </div>
   );
 }
 
 export default App;
+

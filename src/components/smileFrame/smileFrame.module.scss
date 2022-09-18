@@ -1,0 +1,9 @@
+.smileFrame {
+
+  composes:gridFrame from "../gridFrame/gridFrame.module.scss";
+
+}
+.controls{
+  composes:controls from "../gridFrame/gridFrame.module.scss";
+
+}

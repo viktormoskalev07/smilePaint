@@ -1,0 +1,14 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(8 ,1fr);
+    width: 200px;
+  cursor: pointer;
+}
+
+.item{
+  background-color: #ffffff;
+  border:solid #c4c4ef 1px;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  user-select: none;
+}
