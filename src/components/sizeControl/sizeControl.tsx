@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
+import React, {useContext, FunctionComponent} from 'react';
 
 import styles from './sizeControl.module.scss'
-import {Input} from "antd";
+import {Input, Slider} from "antd";
 import {appContext} from "../../context/context";
 import {sizeContext} from "../../context/sizeContext";
 import {makeGrid} from "../../App";
@@ -19,21 +19,37 @@ export const SizeControl = () => {
 		setY,
 		setSize} = context;
 	const {setPoints}=points
-	const widthHandler = (e:any)=>{
-		setX(e.target.value)
-		setPoints(	makeGrid(e.target.value,yState));
+	const widthHandler = (e:number)=>{
+		setX(e)
+		setPoints(	makeGrid(e,yState));
 	};
-	const heightHandler = (e:any)=>{
-		setY(e.target.value)
-		setPoints(	makeGrid(xState, e.target.value ));
+	const heightHandler = (e:number)=>{
+		setY(e)
+		setPoints(	makeGrid(xState, e ));
 	};
-	const sizeHandler = (e:any)=>{
-		setSize(e.target.value)
+	const sizeHandler = (e:number)=>{
+		setSize(e)
 	};
 	return <div className={styles.sizeControl}>
-		<Input addonBefore="width" onChange={widthHandler}  type={'number'}   defaultValue={xState} />
-		<Input addonBefore="height"  onChange={heightHandler} type={'number'}   defaultValue={yState} />
-		<Input addonBefore="point size" onChange={sizeHandler}  type={'number'} defaultValue={sizeState} />
+
+	<Range   value={xState} change={widthHandler} label={"Width"}/>
+	<Range value={yState} change={heightHandler} label={"Height"}/>
+	<Range value={sizeState} change={sizeHandler} label={"point size"}/>
+
+
 	</div>
 };
- 
+
+
+
+type TRange ={
+	value : number,
+	change : (e:number)=>void;
+	label:string;
+}
+const Range:FunctionComponent<TRange>  =({value , change , label})=>{
+	return <div>
+		label
+		<Slider min={5} max={50}   onChange={change} value={value} />
+	</div>
+}

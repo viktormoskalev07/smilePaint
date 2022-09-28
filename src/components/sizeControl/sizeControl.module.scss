@@ -1,6 +1,15 @@
+@import "src/var.scss";
 .sizeControl {
-    height:100px;
-    width: 200px;
+    width: 100%;
+    padding: 20px;
+    display:grid;
+
+    @include md{
+        grid-template-columns:1fr 1fr 1fr;
+    }
+
+
+
     :global{
         .ant-input-group-addon{
             min-width: 100px;

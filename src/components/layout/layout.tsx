@@ -8,9 +8,9 @@ export const LayoutBlock: React.FC<any> = ({defaultContext}) => (
  		<section className={styles.layout}>
  			<h1>  Smile painter</h1>
 
+			<SizeControl/>
 			<div className={styles.mainGrid}>
 				<GridFrame defaultContext={defaultContext}/>
-				<SizeControl/>
 			<SmileFrame/>
 			</div>
 

@@ -7,3 +7,16 @@
   composes:controls from "../gridFrame/gridFrame.module.scss";
 
 }
+
+.hide{
+  .controls{
+    padding: 0;
+  }
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 0;
+  .gridWrap{
+    display: none;
+  }
+}

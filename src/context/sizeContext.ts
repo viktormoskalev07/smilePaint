@@ -1,7 +1,4 @@
-import React, {useState} from "react";
-
-
-
+import React from "react";
 
 interface  SizeContextInterface{
 	xState:number,
@@ -11,7 +8,5 @@ interface  SizeContextInterface{
 	setY:React.Dispatch<any>,
 	setSize:React.Dispatch<any>,
 }
-
-
 
 export const sizeContext = React.createContext<SizeContextInterface|null>( null);

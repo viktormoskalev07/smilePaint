@@ -1,23 +1,77 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 
 import styles from './smileFrame.module.scss'
 import {SmileGrid} from "../smileGrid/smileGrid";
 import classNames from "classnames";
-import {Button} from "antd";
-import {FullscreenOutlined, CopyOutlined, DeleteOutlined} from "@ant-design/icons";
-import {appContext} from "../../context/context";
-import {sizeContext} from "../../context/sizeContext";
+import {Button, Select} from "antd";
+import {FullscreenOutlined, CopyOutlined,   MinusSquareOutlined} from "@ant-design/icons";
+import {useOpen} from "../../hooks/use-open";
+import {Option} from "antd/es/mentions/index";
+
+const icons = [
+'️❤',
+'🧡',
+'💛',
+'💚',
+'💙',
+'💜',
+'😂',
+'👌',
+'😀',
+'😇',
+'😈',
+'👿',
+'🤢',
+'🤤',
+'😴',
+'🙄',
+'😶',
+'🤭',
+'🫢',
+'🤫',
+'😡',
+'😠',
+'😤',
+'😭',
+'😢',
+'☹',
+'😣',
+'😫',
+'😖',
+'😔',
+'😞',
+'😒',
+'🤓',
+]
+
 
 export const SmileFrame = () => {
+	const {isOpen:isHide , onToggle:toggleHide} =useOpen();
+	const [bg , setBg]=useState(icons[1]);
+	const [front , setFront]=useState(icons[4]);
 
-	return <div   className={styles.smileFrame}>
+	const handleFront = (value: string) => {
+		setFront(value)
+	};
+	const handleBg = (value: string) => {
+		setBg(value)
+	};
+	return <div   className={classNames(styles.smileFrame , {[styles.hide]:isHide}) }>
 
-	<SmileGrid/>
 		<div className={classNames( styles.controls  ) }>
-			<Button   icon={		<FullscreenOutlined />}  />
-			<Button icon={	<CopyOutlined />}  />
-			<Button icon={	<DeleteOutlined />}  />
+			<Select defaultValue={icons[1]}   style={{ width: 60 }} onChange={handleBg}>
+				{icons.map((icon, i)=><Option key={i+"o"} value={icon}>{icon}</Option>)}
+			</Select>
+			<Select defaultValue={icons[4]}   style={{ width: 60 }} onChange={handleFront}>
+				{icons.map((icon, i)=><Option key={i+"o"} value={icon}>{icon}</Option>)}
+			</Select>
+
+			<Button  className={styles.btn} onClick={toggleHide} icon={<MinusSquareOutlined />}  />
 		</div>
+		<div className={styles.gridWrap}>
+			<SmileGrid bg={bg} front={front} />
+		</div>
+
 	</div>
 };
  

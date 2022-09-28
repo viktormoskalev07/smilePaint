@@ -1,0 +1,54 @@
+$sm: 576px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1440px;
+$xxl: 1720px;
+
+$Lime: #13CC00;
+$LimeGreen: #388E3C;
+$GrayBlue: #27272E;
+$Gray:#737373;
+
+$LightPeriwinkle: #ECF2F6;
+$White:  #FFFFFF ;
+$MediumSeaGreen: #27B674  ;
+
+$Blue : #4947E5;
+$Yellow:#FFD247;
+
+$fontTitle :'DM Sans';
+$fontText:'Poppins';
+
+$border: #E3E6E9;
+$title: #6F6C8F;
+
+$DarkGray: #4F4F4F;
+$LightGray: #939397;
+
+
+@mixin sm {
+  @media (min-width:$sm) {
+    @content
+  }
+};
+@mixin md {
+  @media (min-width:$md) {
+    @content
+  }
+};
+@mixin lg {
+  @media (min-width:$lg) {
+    @content
+  }
+};
+@mixin xl {
+  @media (min-width:$xl) {
+    @content
+  }
+};
+@mixin xxl {
+  @media (min-width:$xxl) {
+    @content
+  }
+};
+
