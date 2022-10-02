@@ -7,10 +7,14 @@ import {sizeContext} from "../../context/sizeContext";
 
 type TProps={
 	fullScreen:boolean
+	invertColor:boolean
 }
 
-export const Grid:FunctionComponent<TProps> = (fullScreen) => {
-	const moveState=useRef(0)
+export const Grid:FunctionComponent<TProps> = ({fullScreen, invertColor = true}) => {
+	const moveState=useRef(0);
+	const mainColor  =invertColor;
+	const cleanColor  =!invertColor;
+	console.log(mainColor)
 	const context = useContext(appContext);
 	const sizes = useContext(sizeContext);
 	if(!context||!sizes){
@@ -31,7 +35,7 @@ export const Grid:FunctionComponent<TProps> = (fullScreen) => {
 	const stopHandler=()=>{
 		moveState.current=0
 	}
-	const paint = (elem:any  ,color=true )=>{
+	const paint = (elem:any  ,color=mainColor )=>{
 		const newState = [...points]
 		newState[elem.dataset.index] =color;
 		setPoints(newState)
@@ -40,10 +44,10 @@ export const Grid:FunctionComponent<TProps> = (fullScreen) => {
 		if(!moveState.current){
 			return
 		}
-		 paint(e.target ,moveState.current!==2)
+		 paint(e.target ,moveState.current!==2?mainColor:cleanColor)
 	}
 	const clickHandler=(e:any)=>{
-		paint(e.target,moveState.current!==2)
+		paint(e.target,moveState.current!==2?mainColor:cleanColor)
 	}
 	const touchHandler = (e:any)=>{
 		const x =e.touches[0].pageX;
@@ -56,7 +60,7 @@ export const Grid:FunctionComponent<TProps> = (fullScreen) => {
 	}
 	const contextHandler =(e:any)=>{
 		e.preventDefault()
-		paint(e.target , false)
+		paint(e.target , cleanColor)
 	}
 
 

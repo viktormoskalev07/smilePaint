@@ -60,10 +60,10 @@ export const SmileFrame = () => {
 
 		<div className={classNames( styles.controls  ) }>
 			<Select defaultValue={icons[1]}   style={{ width: 60 }} onChange={handleBg}>
-				{icons.map((icon, i)=><Option key={i+"o"} value={icon}>{icon}</Option>)}
+				{icons.map((icon, i)=><Select.Option key={i+"o"} value={icon}>{icon}</Select.Option>)}
 			</Select>
 			<Select defaultValue={icons[4]}   style={{ width: 60 }} onChange={handleFront}>
-				{icons.map((icon, i)=><Option key={i+"o"} value={icon}>{icon}</Option>)}
+				{icons.map((icon, i)=><Select.Option key={i+"o"} value={icon}>{icon}</Select.Option>)}
 			</Select>
 
 			<Button  className={styles.btn} onClick={toggleHide} icon={<MinusSquareOutlined />}  />

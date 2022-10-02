@@ -16,7 +16,6 @@ export const SmileGrid:FunctionComponent<TProps> = ({front , bg}) => {
 		return <> </>
 	}
 	const {sizeState,xState}=sizes;
-	console.log(sizeState)
 	const {points} = context;
 	return <div style={{width:xState*sizeState}} id={'text'} className={styles.smileGrid}>
 		{points.map((point , i)=>{

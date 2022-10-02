@@ -32,7 +32,7 @@ export const SizeControl = () => {
 	};
 	return <div className={styles.sizeControl}>
 
-	<Range   value={xState} change={widthHandler} label={"Width"}/>
+	<Range min={2} max={15}  value={xState} change={widthHandler} label={"Width"}/>
 	<Range value={yState} change={heightHandler} label={"Height"}/>
 	<Range value={sizeState} change={sizeHandler} label={"point size"}/>
 
@@ -46,10 +46,12 @@ type TRange ={
 	value : number,
 	change : (e:number)=>void;
 	label:string;
+	min?:number;
+	max?:number;
 }
-const Range:FunctionComponent<TRange>  =({value , change , label})=>{
+const Range:FunctionComponent<TRange>  =({value , change , label,  min=5 , max=50})=>{
 	return <div>
-		label
-		<Slider min={5} max={50}   onChange={change} value={value} />
+		{label}
+		<Slider min={min} max={max}    onChange={change} value={value} />
 	</div>
 }
